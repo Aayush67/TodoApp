@@ -4,8 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TodoService } from '../app.service';
 import {NgRedux,select} from "@angular-redux/store";
-import { ISubjectState } from 'src/store/subjectStore';
-import { subjectTodoAction } from 'src/action/subjectAction';
+// import { ISubjectState } from 'src/store/subjectStore';
+// import { subjectTodoAction } from 'src/action/subjectAction';
+import { ADD_TODO } from '../redux/actions';
+import { ITodo } from '../redux/todo';
+import { IAppState } from '../redux/store';
 
 
 @Component({
@@ -15,16 +18,9 @@ import { subjectTodoAction } from 'src/action/subjectAction';
 })
 export class AddTodoComponent implements OnInit {
 
-  title = 'TodoApp';
+  
   TodoForm:FormGroup;
-  subjectList=[];
-  subjectID=1;
-  updateFlag=false;
-  subjectToUpdateIndex;
-  constructor(private ngRedux:NgRedux<ISubjectState>,private todoService:TodoService,private formBuilder:FormBuilder,private http: HttpClient){
-    // this.todoService.getJSON().subscribe(data => {
-    //   this.subjectList=data
-  // });
+  constructor(private ngRedux: NgRedux<IAppState>,private todoService:TodoService,private formBuilder:FormBuilder,private http: HttpClient){
 }
 
 
@@ -46,9 +42,11 @@ export class AddTodoComponent implements OnInit {
       let data={
         // id:this.subjectID,
         subject:this.TodoForm.controls.subject.value,
-        status:this.TodoForm.controls.status.value,
+        status:(this.TodoForm.controls.status.value=="Done")?1:0,
       }
-      this.ngRedux.dispatch({type:subjectTodoAction.Add_NewSubject,todo:data});
+      // this.ngRedux.dispatch({type:subjectTodoAction.Add_NewSubject,todo:data});
+      this.ngRedux.dispatch({type: ADD_TODO, todo: data});
+
       // this.subjectID++;
     }
   }

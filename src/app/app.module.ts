@@ -9,8 +9,9 @@ import { UpdateTodoComponent } from './update-todo/update-todo.component';
 import { ListTodoComponent } from './list-todo/list-todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgRedux,NgReduxModule} from "@angular-redux/store";
-import { ISubjectState, INITIAL_STATE } from '../store/subjectStore';
-import { rootReducer } from '../reducer/reducer';
+// import { ISubjectState, INITIAL_STATE } from '../store/subjectStore';
+// import { rootReducer } from '../reducer/reducer';
+import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 
 
 
@@ -32,7 +33,7 @@ import { rootReducer } from '../reducer/reducer';
   bootstrap: [AppComponent]
 })
 export class AppModule { 
-  constructor(ngRedux:NgRedux<ISubjectState>){
+  constructor(ngRedux:NgRedux<IAppState>){
     ngRedux.configureStore(rootReducer,INITIAL_STATE);
   }
 }

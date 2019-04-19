@@ -3,17 +3,18 @@
   <br>
    <input type="text" placeholder="Search.." style="margin:10px" (input)="search($event)">
 
-  <table class="table table-bordered" *ngIf="this.subjectList.length>0">
+  <table class="table table-bordered" *ngIf="(subjectList | async)?.length!=0">
       <thead>
         <tr>
-          <!-- <th>Subject ID</th> -->
+          <th>Subject ID</th>
           <th>Name</th>
           <th>Status</th>
           <th>Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let subject of subjectList;">       
+        <tr *ngFor="let subject of subjectList | async">      
+          <td>{{subject.id}}</td> 
           <td>{{subject.subject}}</td>
           <td>{{subject.status?"Done":"Not Done"}}</td>
           <td><a [routerLink] = "'/update'"><button class="btn btn-warning" (click)="updateSubjectRequest(subject)">Update</button></a>&nbsp;&nbsp; <button class="btn btn-danger" (click)="deleteSubject(subject)">Delete</button></td>
