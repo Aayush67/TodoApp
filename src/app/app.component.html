@@ -1,31 +1,5 @@
-<form [formGroup]="TodoForm">
-<div style="margin-left: 205px;margin-right: 543px;border:1px solid gray;padding:10px;height: 200px;
-">
-<h5 style="margin-left: 90px;">Daily Study Routine</h5>
-<div class="container" style="margin-top:10px " >
- 
-    <div class="row form-group">
-      <label class="col-md-2">Subject</label>
-      <input class="col-md-5 form-control" type="text" formControlName="subject">
-      <span *ngIf="TodoForm.controls.subject.errors?.required && TodoForm.controls.subject.touched" style="color:red"><small>&nbsp;&nbsp;Subject Is Required </small></span>
-    </div>
-    <div class="row form-group">
-        <label class="col-md-2">Status</label>
-        <select formControlName="status">
-            <option value="Done">Done</option>
-            <option value="Not Done">Not Done</option>
-        </select>
-    </div>
-    <div class="row">
-      <button style="margin-left: 20px" class="btn btn-info offset-col-md-1" (click)="addSubject()">Add</button>
-      <button *ngIf="updateFlag" style="margin-left: 20px" class="btn btn-info offset-col-md-1" (click)="updateSubject()">Update</button>
-
-    </div>
-
-</div>
-</div>
-
-<div class="container" style="margin-top:50px">
+<router-outlet></router-outlet>
+<!-- <div class="container" style="margin-top:50px">
 <table class="table table-bordered" *ngIf="this.subjectList.length>0">
     <thead>
       <tr>
@@ -44,5 +18,5 @@
       </tr>
     </tbody>
   </table>
-</div>
-</form>
+</div> -->
+<!-- </form> -->
