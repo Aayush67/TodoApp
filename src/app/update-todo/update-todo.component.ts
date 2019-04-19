@@ -1,6 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
+import { TodoService } from '../app.service';
+import { UPDATE_TODO } from '../redux/actions';
+import { IAppState } from '../redux/store';
+import { NgRedux } from '@angular-redux/store';
 
 @Component({
   selector: 'app-update-todo',
@@ -9,21 +13,31 @@ import { Subject } from 'rxjs';
 })
 export class UpdateTodoComponent implements OnInit {
   TodoForm:FormGroup;
-  constructor(private formBuilder:FormBuilder) { }
+  subject;
+  constructor(private ngRedux: NgRedux<IAppState>,private formBuilder:FormBuilder,private todoService:TodoService) {
+    this.subject=this.todoService.getData();
+   }
 // @Input() Subject;
 @Input() childMessage: string;
 
   ngOnInit() {
     this.TodoForm=this.formBuilder.group({
-      id:"",
-      subject:["",Validators.required],
-      status:"Done"
+      id:[this.subject.id,Validators.required],
+      subject:[this.subject.subject,Validators.required],
+      status:this.subject.status?"Done":"Not Done"
     })
-
+      console.log('app',this.subject  )
   }
   updateSubject()
   {
-    console.log('aaaaaaa',this.childMessage);
+
+    console.log('aaaaaaa',this.TodoForm);
+    let data={
+      id:this.TodoForm.controls.id.value,
+      subject:this.TodoForm.controls.subject.value,
+      status:(this.TodoForm.controls.status.value=="Done")?1:0,
+    }
+    this.ngRedux.dispatch({type: UPDATE_TODO, todo: data});
 
   }
 }

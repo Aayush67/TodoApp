@@ -7,7 +7,7 @@
         <div class="row form-group">
                 <label class="col-md-3">Subject ID</label>
                 <input class="col-md-5 form-control" type="text" formControlName="id">
-                <span *ngIf="TodoForm.controls.subject.errors?.required && TodoForm.controls.subject.touched" style="color:red"><small>&nbsp;&nbsp;Subject Is Required </small></span>
+                <span *ngIf="TodoForm.controls.id.errors?.required && TodoForm.controls.id.touched" style="color:red"><small>&nbsp;&nbsp;ID Is Required </small></span>
               </div>
 
       <div class="row form-group">
@@ -23,7 +23,7 @@
           </select>
       </div>
       <div class="row">
-        <button style="margin-left: 20px" class="btn btn-info offset-col-md-1" (click)="updateSubject()">Update</button>
+            <a [routerLink] = "'/list'"><button style="margin-left: 20px" class="btn btn-info offset-col-md-1" (click)="updateSubject()">Update</button></a>
         <!-- <button *ngIf="updateFlag" style="margin-left: 20px" class="btn btn-info offset-col-md-1" (click)="updateSubject()">Update</button> -->
         <!-- <a [routerLink] = "'/list'"><button style="margin-left: 20px" class="btn btn-info offset-col-md-1" >List</button></a> -->
 

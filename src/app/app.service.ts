@@ -12,4 +12,16 @@ export class  TodoService {
   public getJSON(): Observable<any> {
     return this.http.get("./assets/moc-todos.json");
   }
+
+  private data;
+
+  setData(data){
+    this.data = data;
+  }
+
+  getData(){
+    let temp = this.data;
+    return temp;
+  }
+
 }

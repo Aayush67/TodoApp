@@ -43,7 +43,7 @@ export class ListTodoComponent implements OnInit {
 // @Output() Subject;
 // @Output() messageEvent = new EventEmitter<Object>();
 
- constructor(private ngRedux: NgRedux<IAppState>,private router: Router) {}
+ constructor(private ngRedux: NgRedux<IAppState>,private router: Router,private todoService:TodoService) {}
 
   ngOnInit() {
     console.log('aaa',this.subjectList)
@@ -62,6 +62,7 @@ deleteSubject(subject)
   updateSubjectRequest(subject)
   {
     // this.Subject=subject
+    this.todoService.setData(subject)
     console.log('aaaa',subject);
     // this.messageEvent.emit(subject)
 
