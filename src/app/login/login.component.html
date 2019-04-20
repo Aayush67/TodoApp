@@ -1,0 +1,30 @@
+
+<form [formGroup]="LoginForm">
+  <div style="margin-left: 205px;margin-right: 543px;border:1px solid gray;padding:10px;height: 200px;
+  ">
+  <h5 style="margin-left: 90px;">Login Page</h5>
+  <div class="container" style="margin-top:10px " >
+   
+      <div class="row form-group">
+        <label class="col-md-3">UserName</label>
+        <input class="col-md-5 form-control" type="text" formControlName="userName">
+        <span *ngIf="LoginForm.controls.userName.errors?.required && LoginForm.controls.userName.touched" style="color:red"><small>&nbsp;&nbsp;UserName Is Required </small></span>
+      </div>
+
+      <div class="row form-group">
+        <label class="col-md-3">Password</label>
+        <input class="col-md-5 form-control" type="text" formControlName="password">
+        <span *ngIf="LoginForm.controls.password.errors?.required && LoginForm.controls.password.touched" style="color:red"><small>&nbsp;&nbsp;Password Is Required </small></span>
+      </div>
+
+      <div class="row">
+        <button style="margin-left: 20px" [routerLink] = "'/add'" class="btn btn-info offset-col-md-1" (click)="login()">Login</button>
+        <!-- <button *ngIf="updateFlag" style="margin-left: 20px" class="btn btn-info offset-col-md-1" (click)="updateSubject()">Update</button> -->
+        <!-- <a [routerLink] = "'/list'"><button style="margin-left: 20px" class="btn btn-info offset-col-md-1" >List</button></a> -->
+
+      </div>
+  
+  </div>
+  </div>
+  </form>
+  <button style="margin-left: 50%;margin-top:10px" class="btn btn-info offset-col-md-1" (click)="callApi()">Interceptor</button>

@@ -4,6 +4,7 @@ import { TodoService } from './app.service';
 import { IAppState } from './redux/store';
 import { NgRedux } from '@angular-redux/store';
 import { INIT_TODO } from './redux/actions';
+import { LoginService } from './services/login.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +12,9 @@ import { INIT_TODO } from './redux/actions';
 })
 export class AppComponent {
   title = 'TodoApp';
-  constructor(private todoService: TodoService, private ngRedux: NgRedux<IAppState>) {
+  constructor(private loginService:LoginService,private todoService: TodoService, private ngRedux: NgRedux<IAppState>) {
+    loginService.setValidUserList();
+
   }
 
   ngOnInit() {

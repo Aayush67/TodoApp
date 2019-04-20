@@ -30,6 +30,7 @@ deleteSubject(subject)
 {
   this.ngRedux.dispatch({type: REMOVE_TODO, id: subject.id});
   console.log(this.subjectList.length)
+  console.log('aaabbb',this.subjectList)
 }
 
 //Set subject to update in update Component

@@ -9,10 +9,14 @@ import { UpdateTodoComponent } from './update-todo/update-todo.component';
 import { ListTodoComponent } from './list-todo/list-todo.component';
 import { HttpClientModule } from '@angular/common/http';
 import {NgRedux,NgReduxModule} from "@angular-redux/store";
-// import { ISubjectState, INITIAL_STATE } from '../store/subjectStore';
-// import { rootReducer } from '../reducer/reducer';
 import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
 import { FilterTable } from './list-todo/data.filter';
+import { LoginComponent } from './login/login.component';
+import { AuthGuardService } from './services/auth-guard.service';
+import { AuthService } from './services/auth.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { APIInterceptor } from './services/interceptor';
+import { BlockUIModule } from 'ng-block-ui';
 
 
 
@@ -22,16 +26,19 @@ import { FilterTable } from './list-todo/data.filter';
     AddTodoComponent,
     UpdateTodoComponent,
     ListTodoComponent,
-    FilterTable
+    FilterTable,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgReduxModule
+    NgReduxModule,
+    BlockUIModule.forRoot()
   ],
-  providers: [],
+  providers: [AuthGuardService,AuthService,{provide: HTTP_INTERCEPTORS,useClass: APIInterceptor,
+    multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { 

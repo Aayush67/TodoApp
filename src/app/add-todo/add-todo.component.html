@@ -1,7 +1,10 @@
 <form [formGroup]="TodoForm">
-  <div style="margin-left: 205px;margin-right: 543px;border:1px solid gray;padding:10px;height: 200px;
+  <div style="margin-left: 205px;margin-right: 543px;border:1px solid gray;padding:10px;height: 207px;
   ">
-  <h5 style="margin-left: 90px;">Daily Study Routine</h5>
+  <div class="row">
+    <h5 style="margin-left: 90px;">Daily Study Routine</h5>
+    <button style="margin-left: 222px" [routerLink] = "'/login'" class="btn btn-warning offset-col-md-1"><small>Logout</small></button>
+  </div>  
   <div class="container" style="margin-top:10px " >
    
       <div class="row form-group">
@@ -26,3 +29,8 @@
   </div>
   </div>
   </form>
+
+  <!-- <div class="row">
+    <h5 style="margin-left: 90px;">Daily Study Routine</h5>
+    <button style="margin-left: 222px" [routerLink] = "'/login'" class="btn btn-warning offset-col-md-1"><small>Logout</small></button>
+  </div> -->
