@@ -1,7 +1,7 @@
 <div class="container" style="margin-top:50px">
   <a [routerLink] = "'/add'"><button style="margin:10px" class="btn btn-info offset-col-md-1" >Back</button></a>
   <br>
-   <input type="text" placeholder="Search.." style="margin:10px" (input)="search($event)">
+   <input type="text" *ngIf="(subjectList | async)?.length!=0" placeholder="Search.." style="margin:10px" (input)="search($event.target.value)">
 
   <table class="table table-bordered" *ngIf="(subjectList | async)?.length!=0">
       <thead>
@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let subject of subjectList | async">      
+        <tr *ngFor="let subject of subjectList | async | filterTablePipe : filterData">      
           <td>{{subject.id}}</td> 
           <td>{{subject.subject}}</td>
           <td>{{subject.status?"Done":"Not Done"}}</td>
@@ -21,4 +21,5 @@
         </tr>
       </tbody>
     </table>
+    <div *ngIf="(subjectList | async)?.length==0" style="height: 34px;margin-left: 10px;background-color: gray;margin-right: 86%;padding: 4px;"> No Data To Display</div>
   </div>

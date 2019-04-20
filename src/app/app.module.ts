@@ -12,6 +12,7 @@ import {NgRedux,NgReduxModule} from "@angular-redux/store";
 // import { ISubjectState, INITIAL_STATE } from '../store/subjectStore';
 // import { rootReducer } from '../reducer/reducer';
 import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
+import { FilterTable } from './list-todo/data.filter';
 
 
 
@@ -20,7 +21,8 @@ import { IAppState, rootReducer, INITIAL_STATE } from './redux/store';
     AppComponent,
     AddTodoComponent,
     UpdateTodoComponent,
-    ListTodoComponent
+    ListTodoComponent,
+    FilterTable
   ],
   imports: [
     BrowserModule,

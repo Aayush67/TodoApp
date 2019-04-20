@@ -14,6 +14,7 @@ export class  TodoService {
   }
 
   private data;
+  private initialState;
 
   setData(data){
     this.data = data;
@@ -22,6 +23,15 @@ export class  TodoService {
   getData(){
     let temp = this.data;
     return temp;
+  }
+
+  setInitialState(data)
+  {
+    this.initialState=data
+  }
+  getInitialState()
+  {
+
   }
 
 }

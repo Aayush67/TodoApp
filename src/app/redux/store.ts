@@ -8,7 +8,21 @@ export interface IAppState {
 
 
 export const INITIAL_STATE: IAppState = {
-    subjectList: []
+    subjectList: [{
+        "id":1,
+        "subject": "subject A",
+        "status": 1
+      },
+      {
+        "id":2,
+        "subject": "subject B",
+        "status": 0
+      },
+      {
+        "id":3,
+        "subject": "subject C",
+        "status": 0
+      }]
 }
 
 export function rootReducer(state: IAppState, action): IAppState {
