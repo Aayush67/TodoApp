@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { FormGroup,FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder} from '@angular/forms';
 import { TodoService } from './app.service';
+import { IAppState } from './redux/store';
+import { NgRedux } from '@angular-redux/store';
+import { INIT_TODO } from './redux/actions';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,14 +11,14 @@ import { TodoService } from './app.service';
 })
 export class AppComponent {
   title = 'TodoApp';
-  constructor(private formBuilder:FormBuilder,private todoService:TodoService){
-    let data=this.todoService.getJSON();
-    this.todoService.setInitialState(data);
+  constructor(private todoService: TodoService, private ngRedux: NgRedux<IAppState>) {
   }
 
-  ngOnInit()
-  {
-
+  ngOnInit() {
+    this.todoService.getJSON().subscribe(data => {
+      this.ngRedux.dispatch({type: INIT_TODO, todo: data});
+    });
   }
-  
 }
+
+
